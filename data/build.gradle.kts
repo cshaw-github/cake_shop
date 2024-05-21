@@ -35,4 +35,6 @@ android {
 dependencies {
 	implementation(project(":domain"))
     testImplementation(libs.junit)
+	implementation(libs.kotlin.coroutines)
+	implementation(libs.koin.core)
 }
