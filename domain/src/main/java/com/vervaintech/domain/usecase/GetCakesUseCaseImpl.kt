@@ -1,9 +1,13 @@
 package com.vervaintech.domain.usecase
 
 import com.vervaintech.domain.entities.CakeEntity
+import com.vervaintech.domain.repositories.CakeRepository
+import kotlinx.coroutines.flow.Flow
 
-internal class GetCakesUseCaseImpl: GetCakesUseCase{
-	override suspend fun invoke(): List<CakeEntity> {
-		TODO("Not yet implemented, also return value should be Flow<List<CakeEntity>>")
+internal class GetCakesUseCaseImpl(
+	private val repository: CakeRepository,
+): GetCakesUseCase{
+	override suspend fun invoke(): Flow<List<CakeEntity>> {
+		TODO("Not yet implemented")
 	}
 }
