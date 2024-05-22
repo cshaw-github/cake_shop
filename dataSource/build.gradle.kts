@@ -45,4 +45,8 @@ dependencies {
 	implementation(libs.ktor.client.json)
 
     testImplementation(libs.junit)
+	implementation(libs.kotlin.test)
+	implementation(libs.kotlin.coroutines.test)
+	testImplementation(libs.ktor.client.mock)
+	testImplementation(libs.mockk)
 }

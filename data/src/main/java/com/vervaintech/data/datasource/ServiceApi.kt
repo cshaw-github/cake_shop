@@ -1,3 +1,8 @@
 package com.vervaintech.data.datasource
 
-interface ServiceApi
+import com.vervaintech.data.entities.Response
+import kotlinx.coroutines.flow.Flow
+
+interface ServiceApi {
+	suspend fun getCakes(): Flow<Response>
+}
