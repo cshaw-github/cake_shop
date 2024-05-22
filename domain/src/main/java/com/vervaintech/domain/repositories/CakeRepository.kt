@@ -1,3 +1,8 @@
 package com.vervaintech.domain.repositories
 
-interface CakeRepository
+import com.vervaintech.domain.entities.Status
+import kotlinx.coroutines.flow.Flow
+
+interface CakeRepository {
+	suspend fun getCakes(): Flow<Status>
+}
