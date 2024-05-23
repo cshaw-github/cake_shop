@@ -7,32 +7,34 @@ import com.vervaintech.cakeshop.ui.components.progressbar.CircularProgress
 import com.vervaintech.cakeshop.ui.components.snackbar.CakeSnackbar
 import com.vervaintech.cakeshop.ui.components.snackbar.OnActionPerformed
 import com.vervaintech.cakeshop.ui.model.UiStatus
+import com.vervaintech.cakeshop.ui.utils.ErrorType
 
 @Composable
 fun ValidateUiStatus(
 	uiStatus: UiStatus,
 	snackbar: CakeSnackbar,
-	errorMessage: String = stringResource(R.string.no_internet),
-	actionLabel: String = stringResource(R.string.try_again),
 	progressBarMessage: String = stringResource(R.string.please_wait),
-	onActionPerformed: OnActionPerformed = {},
-	onSuccess: () -> Unit,
+	onActionRetry: OnActionPerformed = {},
 ) {
-    when (uiStatus) {
-        UiStatus.Success -> onSuccess()
+	when (uiStatus) {
+		is UiStatus.Error -> snackbar.showMessage(
+			message = stringResource(getErrorMessage(uiStatus.message)),
+			actionLabel = stringResource(R.string.try_again),
+			onActionPerformed = onActionRetry,
+		)
 
-        UiStatus.Error -> snackbar.showMessage(
-            message = errorMessage,
-            actionLabel = actionLabel,
-            onActionPerformed = onActionPerformed,
-        )
+		is UiStatus.Loading -> {
+			CircularProgress(message = progressBarMessage)
+		}
 
-        UiStatus.Loading -> {
-            CircularProgress(message = progressBarMessage)
-        }
+		is UiStatus.None,
+		is UiStatus.Success -> {
+			/*Do Nothing*/
+		}
+	}
+}
 
-        UiStatus.None -> {
-            /*Do Nothing*/
-        }
-    }
+private fun getErrorMessage(errorType: String): Int = when (errorType) {
+	ErrorType.NO_NETWORK -> ErrorType.NetworkOffline.description
+	else -> ErrorType.UnknownError.description
 }

@@ -4,5 +4,5 @@ sealed class UiStatus {
     data object None : UiStatus()
     data object Loading : UiStatus()
     data object Success : UiStatus()
-    data object Error : UiStatus()
+    class Error(val message: String) : UiStatus()
 }

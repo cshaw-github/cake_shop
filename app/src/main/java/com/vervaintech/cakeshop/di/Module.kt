@@ -15,10 +15,10 @@ val applicationLayerModule = module {
 fun initKoin() {
 	startKoin {
 		modules(
-			applicationLayerModule,
-			domainLayerModule,
-			dataLayerModule,
 			dataSourceModule(enableNetworkLogs = false),
+			dataLayerModule,
+			domainLayerModule,
+			applicationLayerModule,
 		)
 	}
 }

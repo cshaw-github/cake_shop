@@ -1,5 +1,6 @@
 package com.vervaintech.cakeshop.ui.components.imagecaption
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,18 +24,19 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.vervaintech.cakeshop.ui.components.image.CakeImage
 import com.vervaintech.cakeshop.ui.dimens.Dimens
+import com.vervaintech.cakeshop.ui.model.CakeEntity
 import com.vervaintech.cakeshop.ui.theme.CakeShopTheme
 
 @Composable
 fun VerticalImageCaptionCard(
 	modifier: Modifier = Modifier,
-	title: String,
+	cake: CakeEntity,
 	titleStyle: TextStyle = MaterialTheme.typography.titleLarge,
-	imageUrl: String,
 	contentDescription: String? = null,
 	imageContentScale: ContentScale = ContentScale.Crop,
 	imageHeight: Dp = Dimens.xxxLarge,
-	roundedCornerShape: CornerBasedShape = MaterialTheme.shapes.medium
+	roundedCornerShape: CornerBasedShape = MaterialTheme.shapes.medium,
+	onItemClick: (CakeEntity) -> Unit
 ) {
 	ElevatedCard(
 		modifier = modifier.wrapContentWidth(),
@@ -43,13 +45,14 @@ fun VerticalImageCaptionCard(
 		),
 	) {
 		VerticalImageCaption(
-			title = title,
 			titleStyle = titleStyle,
-			imageUrl = imageUrl,
+			cake = cake,
 			contentDescription = contentDescription,
 			imageContentScale = imageContentScale,
 			imageHeight = imageHeight,
-			roundedCornerShape = roundedCornerShape
+			roundedCornerShape = roundedCornerShape,
+			onItemClick = onItemClick
+
 		)
 	}
 }
@@ -57,23 +60,24 @@ fun VerticalImageCaptionCard(
 @Composable
 fun VerticalImageCaption(
 	modifier: Modifier = Modifier,
-	title: String,
+	cake: CakeEntity,
 	titleStyle: TextStyle = MaterialTheme.typography.titleLarge,
-	imageUrl: String,
 	contentDescription: String? = null,
 	imageContentScale: ContentScale = ContentScale.Fit,
 	imageHeight: Dp = Dimens.xLarge,
-	roundedCornerShape: CornerBasedShape = MaterialTheme.shapes.medium
+	roundedCornerShape: CornerBasedShape = MaterialTheme.shapes.medium,
+	onItemClick: (CakeEntity) -> Unit
 ) {
 	Column(
 		modifier = modifier
             .wrapContentWidth()
-            .padding(16.dp),
+            .padding(16.dp)
+			.clickable { onItemClick(cake) },
 		verticalArrangement = Arrangement.Center,
 		horizontalAlignment = Alignment.CenterHorizontally
 	) {
 		CakeImage(
-			imageUrl = imageUrl,
+			imageUrl = cake.image,
 			contentDescription = contentDescription,
 			imageContentScale = imageContentScale,
 			imageHeight = imageHeight,
@@ -81,8 +85,7 @@ fun VerticalImageCaption(
 		)
 		Spacer(modifier = Modifier.height(16.dp))
 		Text(
-
-			text = title,
+			text = cake.title,
 			style = titleStyle,
 			color = MaterialTheme.colorScheme.onSurface
 		)
@@ -98,9 +101,8 @@ fun VerticalImageCaptionCardPreview() {
 		CakeShopTheme {
 			Surface {
 				VerticalImageCaptionCard(
-					imageUrl = "https://hips.hearstapps.com/del.h-cdn.co/assets/18/08/1519321610-carrot-cake-vertical.jpg",
-					title = "Donkey kongs favourite",
-				)
+					cake = CakeEntity("title", "desc", "image")
+				) {}
 			}
 		}
 	}

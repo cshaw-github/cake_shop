@@ -4,6 +4,7 @@ import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.vervaintech.cakeshop.ui.mapper.toUi
 import com.vervaintech.cakeshop.ui.model.UiStatus
+import com.vervaintech.cakeshop.ui.utils.ErrorType.Companion.UNKNOWN_ERROR
 import com.vervaintech.domain.entities.Status
 import com.vervaintech.domain.usecase.GetCakesUseCase
 import kotlinx.coroutines.Dispatchers.IO
@@ -21,7 +22,9 @@ class HomeScreenViewModel(
 ) : ScreenModel {
 
 	init {
-		getCakes()
+		screenModelScope.launch(IO) {
+			getCakes()
+		}
 	}
 
 	private val _cakesState = MutableStateFlow(emptyList<UiCakeEntity>())
@@ -32,18 +35,12 @@ class HomeScreenViewModel(
 	val uiState: StateFlow<UiStatus>
 		get() = _uiState
 
-	fun resetUiState() {
-		_uiState.value = UiStatus.None
-	}
-
-	fun getCakes() {
-		screenModelScope.launch(IO) {
-			getCakesUseCase()
-				.onStart { _uiState.value = UiStatus.Loading }
-				.onEach(::validateLogin)
-				.catch {}
-				.collect()
-		}
+	suspend fun getCakes() {
+		getCakesUseCase()
+			.onStart { _uiState.value = UiStatus.Loading }
+			.onEach(::validateLogin)
+			.catch {}
+			.collect()
 	}
 
 	private fun validateLogin(
@@ -56,7 +53,7 @@ class HomeScreenViewModel(
 			}
 
 			false -> {
-				_uiState.value = UiStatus.Error
+				_uiState.value = UiStatus.Error(status.error ?: UNKNOWN_ERROR)
 			}
 		}
 	}
