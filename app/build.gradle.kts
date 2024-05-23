@@ -72,4 +72,8 @@ dependencies {
 
 	implementation(libs.kotlin.coroutines)
 	implementation(libs.koin.core)
+	implementation(libs.coil.compose)
+
+	implementation(libs.voyager.navigator)
+	implementation(libs.voyager.koin)
 }
