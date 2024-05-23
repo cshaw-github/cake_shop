@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -56,7 +57,7 @@ private fun HomeContent(
 			SnackbarHost(hostState = snackbar.snackbarHostState)
 		},
 	) { contentPadding ->
-
+		val listState = rememberLazyListState()
 		val uiState by viewModel.uiState.collectAsState()
 		val cakes by viewModel.cakesState.collectAsState()
 
@@ -70,7 +71,7 @@ private fun HomeContent(
 		)
 
 		if (uiState != UiStatus.Loading) {
-			Home(cakes = cakes, contentPadding)
+			Home(cakes = cakes, listState, contentPadding)
 		}
 	}
 }
@@ -78,9 +79,10 @@ private fun HomeContent(
 @Composable
 private fun Home(
 	cakes: List<CakeEntity>,
+	lazyListState: LazyListState,
 	contentPadding: PaddingValues
 ) {
-	val listState = rememberLazyListState()
+
 	LazyColumn(
 		contentPadding = contentPadding,
 		modifier = Modifier.padding(
@@ -89,7 +91,7 @@ private fun Home(
 			bottom = Dimens.xLarge,
 			end = Dimens.medium
 		),
-		state = listState,
+		state = lazyListState,
 		verticalArrangement = Arrangement.spacedBy(Dimens.medium),
 	) {
 		items(cakes.size) { index ->
