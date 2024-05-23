@@ -76,4 +76,9 @@ dependencies {
 
 	implementation(libs.voyager.navigator)
 	implementation(libs.voyager.koin)
+
+	testImplementation(libs.junit)
+	implementation(libs.kotlin.test)
+	implementation(libs.kotlin.coroutines.test)
+	testImplementation(libs.mockk)
 }
