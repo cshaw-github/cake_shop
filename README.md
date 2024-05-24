@@ -29,8 +29,8 @@ The project follows the Clean Architecture principles, ensuring a scalable, main
 
 1. **Presentation Layer**: Contains UI components built with Jetpack Compose and ViewModels that handle the presentation logic.
 2. **Domain Layer**: Includes use cases which encapsulate the business logic of the application.
-3. **Data Layer**: Manages data from various sources (e.g., network, local database) using the repository pattern.
-4. **Data Source Layer**: Interfaces with external data sources, such as APIs and local databases. This layer is responsible for data retrieval and persistence.
+3. **Data Layer**: Manages data from various sources (e.g., network) using the repository pattern.
+4. **Data Source Layer**: Interfaces with external data sources, such as APIs. This layer is responsible for data retrieval and persistence.
 5. **Dependency Injection Layer**: Uses Koin for providing dependencies throughout the application.
 
 ## Technologies Used
