@@ -4,9 +4,9 @@ import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.vervaintech.cakeshop.ui.mapper.toUi
 import com.vervaintech.cakeshop.ui.model.UiStatus
-import com.vervaintech.cakeshop.ui.utils.ErrorType.Companion.UNKNOWN_ERROR
 import com.vervaintech.domain.entities.Status
 import com.vervaintech.domain.usecase.GetCakesUseCase
+import com.vervaintech.utils.Uitls.UNKNOWN_ERROR
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

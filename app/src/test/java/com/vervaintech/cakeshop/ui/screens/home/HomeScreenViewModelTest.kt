@@ -1,10 +1,11 @@
 package com.vervaintech.cakeshop.ui.screens.home
 
 import com.vervaintech.cakeshop.ui.model.UiStatus
-import com.vervaintech.cakeshop.ui.utils.ErrorType
 import com.vervaintech.domain.entities.CakeEntity
 import com.vervaintech.domain.entities.Status
 import com.vervaintech.domain.usecase.GetCakesUseCase
+import com.vervaintech.utils.Uitls.NO_NETWORK
+import com.vervaintech.utils.Uitls.UNKNOWN_ERROR
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -41,13 +42,13 @@ class HomeScreenViewModelTest {
 	@Test
 	fun testGetAllCakesNoInternetError() = runTest {
 		coEvery { getCakesUseCase.invoke() } returns flowOf(
-			Status(error = ErrorType.Companion.NO_NETWORK)
+			Status(error = NO_NETWORK)
 		)
 
 		val viewModel = HomeScreenViewModel(getCakesUseCase)
 
 		viewModel.getCakes()
-		assertTrue { viewModel.uiState.value is UiStatus.Error && (viewModel.uiState.value as UiStatus.Error).message == ErrorType.NO_NETWORK }
+		assertTrue { viewModel.uiState.value is UiStatus.Error && (viewModel.uiState.value as UiStatus.Error).message == NO_NETWORK }
 	}
 
 	@Test
@@ -59,6 +60,6 @@ class HomeScreenViewModelTest {
 		val viewModel = HomeScreenViewModel(getCakesUseCase)
 
 		viewModel.getCakes()
-		assertTrue { viewModel.uiState.value is UiStatus.Error && (viewModel.uiState.value as UiStatus.Error).message == ErrorType.UNKNOWN_ERROR }
+		assertTrue { viewModel.uiState.value is UiStatus.Error && (viewModel.uiState.value as UiStatus.Error).message == UNKNOWN_ERROR }
 	}
 }

@@ -7,7 +7,8 @@ import com.vervaintech.cakeshop.ui.components.progressbar.CircularProgress
 import com.vervaintech.cakeshop.ui.components.snackbar.CakeSnackbar
 import com.vervaintech.cakeshop.ui.components.snackbar.OnActionPerformed
 import com.vervaintech.cakeshop.ui.model.UiStatus
-import com.vervaintech.cakeshop.ui.utils.ErrorType
+import com.vervaintech.cakeshop.ui.model.ErrorType
+import com.vervaintech.utils.Uitls
 
 @Composable
 fun ValidateUiStatus(
@@ -35,6 +36,6 @@ fun ValidateUiStatus(
 }
 
 private fun getErrorMessage(errorType: String): Int = when (errorType) {
-	ErrorType.NO_NETWORK -> ErrorType.NetworkOffline.description
+	Uitls.NO_NETWORK -> ErrorType.NetworkOffline.description
 	else -> ErrorType.UnknownError.description
 }

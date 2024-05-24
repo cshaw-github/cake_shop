@@ -34,6 +34,7 @@ android {
 
 dependencies {
 	implementation(project(":data"))
+	implementation(project(":utils"))
 	implementation(libs.kotlin.coroutines)
 	implementation(libs.koin.core)
 

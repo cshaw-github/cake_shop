@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-	alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
-    namespace = "com.vervaintech.data"
+    namespace = "com.vervaintech.utils"
     compileSdk = 34
 
     defaultConfig {
@@ -34,14 +33,11 @@ android {
 }
 
 dependencies {
-	implementation(project(":domain"))
-	implementation(project(":utils"))
-	implementation(libs.kotlin.coroutines)
-	implementation(libs.koin.core)
-	implementation(libs.ktor.serialization.kotlinx.json)
 
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     testImplementation(libs.junit)
-	implementation(libs.kotlin.test)
-	implementation(libs.kotlin.coroutines.test)
-	testImplementation(libs.mockk)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

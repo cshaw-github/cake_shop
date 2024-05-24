@@ -1,6 +1,8 @@
-package com.vervaintech.cakeshop.ui.utils
+package com.vervaintech.cakeshop.ui.model
 
 import com.vervaintech.cakeshop.R
+import com.vervaintech.utils.Uitls.NO_NETWORK
+import com.vervaintech.utils.Uitls.UNKNOWN_ERROR
 
 sealed class ErrorType(val errorType: String, val description: Int) {
 
@@ -13,9 +15,4 @@ sealed class ErrorType(val errorType: String, val description: Int) {
 		errorType = UNKNOWN_ERROR,
 		description = R.string.unknown_error,
 	)
-
-	companion object {
-		const val NO_NETWORK = "NO_NETWORK"
-		const val UNKNOWN_ERROR = "UNKNOWN_ERROR"
-	}
 }

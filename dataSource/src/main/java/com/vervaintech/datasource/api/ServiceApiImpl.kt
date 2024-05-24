@@ -2,7 +2,7 @@ package com.vervaintech.datasource.api
 
 import com.vervaintech.data.datasource.ServiceApi
 import com.vervaintech.data.entities.Response
-import com.vervaintech.datasource.utils.Uitls.NO_NETWORK
+import com.vervaintech.utils.Uitls.NO_NETWORK
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
