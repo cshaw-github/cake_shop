@@ -22,6 +22,7 @@ The Cake Shop project showcases a modern Android application built with a focus 
 - Dependency injection with Koin
 - Jetpack Compose for declarative UI development
 - Comprehensive unit tests with MockK
+- Fetching data from server using Ktor
 
 ## Architecture
 
@@ -30,7 +31,7 @@ The project follows the Clean Architecture principles, ensuring a scalable, main
 1. **Presentation Layer**: Contains UI components built with Jetpack Compose and ViewModels that handle the presentation logic.
 2. **Domain Layer**: Includes use cases which encapsulate the business logic of the application.
 3. **Data Layer**: Manages data from various sources (e.g., network) using the repository pattern.
-4. **Data Source Layer**: Interfaces with external data sources, such as APIs. This layer is responsible for data retrieval and persistence.
+4. **Data Source Layer**: Interfaces with external data sources, such as APIs. This layer is responsible for data retrieval. Ktor is used to fetch cake data from a server.
 5. **Dependency Injection Layer**: Uses Koin for providing dependencies throughout the application.
 
 ## Technologies Used
@@ -39,6 +40,7 @@ The project follows the Clean Architecture principles, ensuring a scalable, main
 - **Jetpack Compose**: For building the UI
 - **Koin**: For dependency injection
 - **MockK**: For unit testing
+- **Ktor**: For HTTP networking
 - **Coroutines**: For asynchronous programming
 - **StateFlow**: For observing data changes in the UI
 
