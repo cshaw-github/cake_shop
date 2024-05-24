@@ -3,7 +3,7 @@ package com.vervaintech.domain.usecase
 import com.vervaintech.domain.entities.CakeEntity
 import com.vervaintech.domain.entities.Status
 import com.vervaintech.domain.repositories.CakeRepository
-import com.vervaintech.domain.usecase.MockApiResponse.CAKES
+import com.vervaintech.utils.testdata.MockApiResponse.CAKES
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK

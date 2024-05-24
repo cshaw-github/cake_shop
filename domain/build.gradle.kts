@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+	implementation(project(":utils"))
 	implementation(libs.kotlin.coroutines)
 	implementation(libs.koin.core)
 	implementation(libs.ktor.serialization.kotlinx.json)

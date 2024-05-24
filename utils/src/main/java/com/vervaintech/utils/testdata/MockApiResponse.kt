@@ -1,4 +1,4 @@
-package com.vervaintech.datasource.api
+package com.vervaintech.utils.testdata
 
 
 object MockApiResponse {
