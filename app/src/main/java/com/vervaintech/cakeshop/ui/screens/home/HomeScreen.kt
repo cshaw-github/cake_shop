@@ -107,16 +107,7 @@ private fun HomeContent(
 		if (uiState == UiStatus.Success) {
 			Home(cakes = cakes, listState, pullRefreshState, contentPadding)
 		} else if (uiState is UiStatus.Error) {
-			Column(
-				modifier = Modifier.fillMaxSize(),
-				verticalArrangement = Arrangement.Center,
-				horizontalAlignment = Alignment.CenterHorizontally
-			) {
-				Text(
-					text = stringResource(R.string.no_data_available),
-					style = MaterialTheme.typography.titleLarge
-				)
-			}
+			NoDataAvailableScreen()
 		}
 	}
 }
@@ -168,6 +159,20 @@ private fun Home(
 		PullToRefreshContainer(
 			modifier = Modifier.align(Alignment.TopCenter),
 			state = pullToRefreshState,
+		)
+	}
+}
+
+@Composable
+private fun NoDataAvailableScreen() {
+	Column(
+		modifier = Modifier.fillMaxSize(),
+		verticalArrangement = Arrangement.Center,
+		horizontalAlignment = Alignment.CenterHorizontally
+	) {
+		Text(
+			text = stringResource(R.string.no_data_available),
+			style = MaterialTheme.typography.titleLarge
 		)
 	}
 }
