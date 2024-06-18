@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
-import com.vervaintech.cakeshop.ui.model.CakeEntity as UiCakeEntity
+import com.vervaintech.cakeshop.ui.model.CakeEntity
 
 class HomeScreenViewModel(
 	private val getCakesUseCase: GetCakesUseCase,
@@ -27,17 +27,15 @@ class HomeScreenViewModel(
 		}
 	}
 
-	private val _cakesState = MutableStateFlow(emptyList<UiCakeEntity>())
-	val cakesState: StateFlow<List<UiCakeEntity>>
-		get() = _cakesState
+	val cakesState: StateFlow<List<CakeEntity>>
+		field = MutableStateFlow<List<CakeEntity>>(emptyList<CakeEntity>())
 
-	private val _uiState = MutableStateFlow<UiStatus>(UiStatus.None)
 	val uiState: StateFlow<UiStatus>
-		get() = _uiState
+		field = MutableStateFlow<UiStatus>(UiStatus.None)
 
 	suspend fun getCakes() {
 		getCakesUseCase()
-			.onStart { _uiState.value = UiStatus.Loading }
+			.onStart { uiState.value = UiStatus.Loading }
 			.onEach(::validateLogin)
 			.catch {}
 			.collect()
@@ -48,12 +46,12 @@ class HomeScreenViewModel(
 	) {
 		when (status.successful) {
 			true -> {
-				_cakesState.value = status.data.map { it.toUi() }
-				_uiState.value = UiStatus.Success
+				cakesState.value = status.data.map { it.toUi() }
+				uiState.value = UiStatus.Success
 			}
 
 			false -> {
-				_uiState.value = UiStatus.Error(status.error ?: UNKNOWN_ERROR)
+				uiState.value = UiStatus.Error(status.error ?: UNKNOWN_ERROR)
 			}
 		}
 	}

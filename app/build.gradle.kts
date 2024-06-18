@@ -50,6 +50,12 @@ android {
     }
 }
 
+kotlin {
+	sourceSets.all {
+		languageSettings.enableLanguageFeature("ExplicitBackingFields")
+	}
+}
+
 dependencies {
 	implementation(project(":libraries:domainLayer"))
 	implementation(project(":libraries:dataLayer"))
