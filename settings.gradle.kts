@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Cake Shop"
 include(":app")
-include(":domain")
-include(":data")
-include(":dataSource")
-include(":utils")
+include(":libraries:domainLayer")
+include(":libraries:dataLayer")
+include(":libraries:dataSource")
+include(":libraries:utils")

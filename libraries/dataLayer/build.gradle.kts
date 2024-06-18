@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.vervaintech.domain"
+    namespace = "com.vervaintech.data"
     compileSdk = 34
 
     defaultConfig {
@@ -34,14 +34,14 @@ android {
 }
 
 dependencies {
-	implementation(project(":utils"))
+	implementation(project(":libraries:domainLayer"))
+	implementation(project(":libraries:utils"))
 	implementation(libs.kotlin.coroutines)
 	implementation(libs.koin.core)
 	implementation(libs.ktor.serialization.kotlinx.json)
 
+    testImplementation(libs.junit)
 	implementation(libs.kotlin.test)
 	implementation(libs.kotlin.coroutines.test)
-	testImplementation(libs.ktor.client.mock)
 	testImplementation(libs.mockk)
-	testImplementation(libs.junit)
 }

@@ -50,15 +50,15 @@ android {
 }
 
 dependencies {
-	implementation(project(":domain"))
-	implementation(project(":data"))
-	implementation(project(":dataSource"))
-	implementation(project(":utils"))
+	implementation(project(":libraries:domainLayer"))
+	implementation(project(":libraries:dataLayer"))
+    implementation(project(":libraries:dataSource"))
+	implementation(project(":libraries:utils"))
 
+	implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
